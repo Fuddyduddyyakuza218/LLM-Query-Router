@@ -1,0 +1,9 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+data/labels.jsonl
+data/features.csv
+*.pt
+mlruns/
+.ipynb_checkpoints/
