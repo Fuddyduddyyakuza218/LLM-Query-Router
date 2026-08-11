@@ -210,13 +210,15 @@ def main():
 
             if val_f1 > best_f1:
                 best_f1 = val_f1
-                torch.save(model.state_dict(), best_path)
-                print(f"  ** New best F1: {best_f1:.4f} -- saved to {best_path}")
+                model.save_pretrained(MODELS_DIR / "bert_router_hf")
+                print(f"  ** New best F1: {best_f1:.4f} -- saved to {MODELS_DIR / 'bert_router_hf'}")
 
         mlflow.log_metric("best_val_f1", best_f1)
 
     # final eval with best checkpoint
-    model.load_state_dict(torch.load(best_path, map_location=DEVICE))
+    model = DistilBertForSequenceClassification.from_pretrained(
+        str(MODELS_DIR / "bert_router_hf")
+    ).to(DEVICE)
     _, final_f1, final_preds, final_true = eval_epoch(model, val_loader)
 
     y_true_labels = le.inverse_transform(final_true)
