@@ -72,14 +72,7 @@ def rule_based_override(prompt: str, features: np.ndarray) -> str | None:
     due to training distribution mismatch.
     Returns a tier string if a rule fires, None otherwise.
     """
-    COLS = [
-        "token_count", "sentence_count", "avg_word_length",
-        "has_math", "has_code", "digit_count", "unique_word_ratio",
-        "named_entity_count", "flesch_reading_ease", "choice_count",
-        "starts_with_what", "starts_with_why", "starts_with_how",
-        "starts_with_which", "starts_with_calc",
-    ]
-    f = dict(zip(COLS, features.flatten().tolist()))
+    f = dict(zip(FEATURE_COLS, features.flatten().tolist()))
 
     # very short factual question with no math/code -- clearly cheap
     if f["token_count"] < 20 and f["choice_count"] == 0 and f["has_math"] == 0 and f["has_code"] == 0:
