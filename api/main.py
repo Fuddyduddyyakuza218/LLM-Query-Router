@@ -62,7 +62,7 @@ def extract_features(prompt: str) -> np.ndarray:
         "starts_with_why":     int(bool(re.search(r"\bwhy\b",     lower))),
         "starts_with_how":     int(bool(re.search(r"\bhow\b",     lower))),
         "starts_with_which":   int(bool(re.search(r"\bwhich\b",   lower))),
-        "starts_with_calc":    int(bool(re.search(r"\bcalculate|compute|solve|find\b", lower))),
+        "starts_with_calc":    int(bool(re.search(r"\b(calculate|compute|solve|find)\b", lower))),
     }
     return np.array([feats[c] for c in FEATURE_COLS]).reshape(1, -1)
 
