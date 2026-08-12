@@ -131,7 +131,7 @@ def route(req: RouteRequest):
     if override is not None:
         tier       = override
         confidence = 1.0
-        token_count = len(tiktoken.get_encoding("cl100k_base").encode(req.prompt))
+        token_count = int(X[0][0])   # already computed in extract_features
         est_cost    = COST[tier] * token_count / 1_000_000
         exp_cost    = COST["expensive"] * token_count / 1_000_000
         savings     = exp_cost - est_cost
@@ -164,7 +164,7 @@ def route(req: RouteRequest):
     tier       = "expensive" if exp_prob >= req.threshold else "cheap"
     confidence = exp_prob if tier == "expensive" else 1.0 - exp_prob
 
-    token_count = len(tiktoken.get_encoding("cl100k_base").encode(req.prompt))
+    token_count = int(X[0][0])   # already computed in extract_features
     est_cost    = COST[tier] * token_count / 1_000_000
     exp_cost    = COST["expensive"] * token_count / 1_000_000
     savings     = exp_cost - est_cost
