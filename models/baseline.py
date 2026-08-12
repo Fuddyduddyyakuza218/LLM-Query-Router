@@ -176,7 +176,7 @@ def main():
 
         # ── Logistic Regression ──
         with mlflow.start_run(run_name=f"lr_{experiment}"):
-            lr = LogisticRegression(max_iter=1000, random_state=42)
+            lr = LogisticRegression(max_iter=1000, random_state=42, class_weight="balanced")
             cv_scores = cross_val_score(lr, X_train, y_train, cv=5, scoring="f1_macro")
             print(f"\nLR 5-fold CV F1: {cv_scores.mean():.3f} +/- {cv_scores.std():.3f}")
 
@@ -192,13 +192,18 @@ def main():
             pickle.dump(le, open(MODELS_DIR / "label_encoder.pkl", "wb"))
 
         # ── XGBoost ──
+        # ── XGBoost ──
         with mlflow.start_run(run_name=f"xgb_{experiment}"):
+            cheap_idx      = le.transform(["cheap"])[0]
+            exp_idx        = le.transform(["expensive"])[0]
+            scale_pos_w    = np.sum(y_train == cheap_idx) / max(np.sum(y_train == exp_idx), 1)
             xgb = XGBClassifier(
                 n_estimators=200,
                 max_depth=4,
                 learning_rate=0.05,
                 subsample=0.8,
                 colsample_bytree=0.8,
+                scale_pos_weight=scale_pos_w,
                 random_state=42,
                 eval_metric="logloss",
                 verbosity=0,
