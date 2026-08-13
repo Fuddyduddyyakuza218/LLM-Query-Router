@@ -181,7 +181,7 @@ def main():
 
     train_losses, val_losses, val_f1s = [], [], []
     best_f1   = 0.0
-    best_path = MODELS_DIR / "bert_router.pt"
+    best_path = MODELS_DIR / "bert_router_hf"
 
     with mlflow.start_run(run_name="distilbert"):
         mlflow.log_params({
