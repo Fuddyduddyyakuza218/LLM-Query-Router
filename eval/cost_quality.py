@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import torch
+import sys
 from pathlib import Path
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 from sklearn.preprocessing import LabelEncoder
@@ -18,10 +19,8 @@ PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MAX_LEN = 256
 
-COST = {
-    "cheap":     0.0,
-    "expensive": 2.50,   # per 1M tokens
-}
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from config import COST
 
 FEATURE_COLS_NO_SRC = [
     "token_count", "sentence_count", "avg_word_length",

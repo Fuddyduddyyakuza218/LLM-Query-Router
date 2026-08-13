@@ -24,11 +24,9 @@ PLOTS_DIR     = Path("eval/plots")
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
 PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
-# cost per 1M tokens (input only, simplified)
-COST = {
-    "cheap":     0.0,     # Groq free tier
-    "expensive": 2.50,    # GPT-4o equivalent pricing benchmark
-}
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from config import COST
 
 FEATURE_COLS_WITH_SRC = [
     "token_count", "sentence_count", "avg_word_length",

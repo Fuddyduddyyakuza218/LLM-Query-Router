@@ -26,11 +26,9 @@ bert      = DistilBertForSequenceClassification.from_pretrained(
 ).to(DEVICE)
 bert.eval()
 
-COST = {"cheap": 0.0, "expensive": 2.50}
-MODEL_NAMES = {
-    "cheap":     "llama-3.1-8b-instant",
-    "expensive": "llama-3.3-70b-versatile",
-}
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from config import COST, MODEL_NAMES
 
 FEATURE_COLS = [
     "token_count", "sentence_count", "avg_word_length",
