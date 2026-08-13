@@ -44,8 +44,9 @@ FEATURE_COLS = [
 
 def extract_features(prompt: str) -> np.ndarray:
     lower = prompt.lower()
-    doc   = nlp(prompt[:1000])
-    words = prompt.split()
+    doc     = nlp(prompt)
+    ent_doc = nlp(prompt[:1000])
+    words   = prompt.split()
 
     feats = {
         "token_count":         len(enc.encode(prompt)),
@@ -55,7 +56,7 @@ def extract_features(prompt: str) -> np.ndarray:
         "has_code":            int(bool(re.search(r"```|def |import |class |for |while |if |return |print\(", prompt))),
         "digit_count":         len(re.findall(r"\d", prompt)),
         "unique_word_ratio":   len(set(re.findall(r"\b\w+\b", lower))) / max(len(re.findall(r"\b\w+\b", lower)), 1),
-        "named_entity_count":  len(doc.ents),
+        "named_entity_count":  len(ent_doc.ents),
         "flesch_reading_ease": max(-50.0, min(120.0, textstat.flesch_reading_ease(prompt))),
         "choice_count":        len(re.findall(r"\b[A-D]\.", prompt)),
         "starts_with_what":    int(bool(re.search(r"\bwhat\b",    lower))),
